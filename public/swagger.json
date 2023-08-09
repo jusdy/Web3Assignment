@@ -1,0 +1,343 @@
+{
+	"components": {
+		"examples": {},
+		"headers": {},
+		"parameters": {},
+		"requestBodies": {},
+		"responses": {},
+		"schemas": {
+			"PingResponse": {
+				"properties": {
+					"message": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"message"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"ValidateResponse": {
+				"properties": {
+					"address": {
+						"type": "string"
+					},
+					"isValid": {
+						"type": "boolean"
+					}
+				},
+				"required": [
+					"address",
+					"isValid"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"WalletResponse": {
+				"properties": {
+					"address": {
+						"type": "string"
+					},
+					"privateKey": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"address",
+					"privateKey"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"TransactionData": {
+				"properties": {
+					"hash": {
+						"type": "string"
+					},
+					"from": {
+						"type": "string"
+					},
+					"to": {
+						"type": "string"
+					},
+					"value": {
+						"type": "string"
+					},
+					"formattedValue": {
+						"type": "number",
+						"format": "double"
+					},
+					"blockNumber": {
+						"type": "number",
+						"format": "double"
+					}
+				},
+				"required": [
+					"hash",
+					"from",
+					"to",
+					"value",
+					"formattedValue",
+					"blockNumber"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"WalletHistoryResponse": {
+				"properties": {
+					"success": {
+						"type": "boolean"
+					},
+					"size": {
+						"type": "number",
+						"format": "double"
+					},
+					"transactions": {
+						"items": {
+							"$ref": "#/components/schemas/TransactionData"
+						},
+						"type": "array"
+					},
+					"message": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"success"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"CoinsResponse": {
+				"properties": {
+					"success": {
+						"type": "boolean"
+					},
+					"coins": {
+						"items": {
+							"type": "string"
+						},
+						"type": "array"
+					},
+					"message": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"success"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"PriceData": {
+				"properties": {
+					"name": {
+						"type": "string"
+					},
+					"price": {
+						"type": "number",
+						"format": "double"
+					}
+				},
+				"required": [
+					"name",
+					"price"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"PriceResponse": {
+				"properties": {
+					"success": {
+						"type": "boolean"
+					},
+					"coins": {
+						"items": {
+							"$ref": "#/components/schemas/PriceData"
+						},
+						"type": "array"
+					},
+					"message": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"success"
+				],
+				"type": "object",
+				"additionalProperties": false
+			}
+		},
+		"securitySchemes": {}
+	},
+	"info": {
+		"title": "web3-bot-assignment",
+		"version": "1.0.0",
+		"description": "Make API server using two libraries.",
+		"license": {
+			"name": "MIT"
+		},
+		"contact": {
+			"name": "Dylan"
+		}
+	},
+	"openapi": "3.0.0",
+	"paths": {
+		"/ping": {
+			"get": {
+				"operationId": "GetMessage",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/PingResponse"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"ping"
+				],
+				"security": [],
+				"parameters": []
+			}
+		},
+		"/ethers/address-validate": {
+			"get": {
+				"operationId": "ValidateAddress",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/ValidateResponse"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"ethers"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "query",
+						"name": "address",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			}
+		},
+		"/ethers/generate-wallet": {
+			"post": {
+				"operationId": "GenerateWallet",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/WalletResponse"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"ethers"
+				],
+				"security": [],
+				"parameters": []
+			}
+		},
+		"/ethers/wallet-history": {
+			"get": {
+				"operationId": "GetWalletHistory",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/WalletHistoryResponse"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"ethers"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "query",
+						"name": "address",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			}
+		},
+		"/ccxt/binance/coins": {
+			"get": {
+				"operationId": "GetCurrencies",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/CoinsResponse"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"ccxt-binance"
+				],
+				"security": [],
+				"parameters": []
+			}
+		},
+		"/ccxt/binance/average-prices": {
+			"get": {
+				"operationId": "GetAveragePrices",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/PriceResponse"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"ccxt-binance"
+				],
+				"security": [],
+				"parameters": []
+			}
+		}
+	},
+	"servers": [
+		{
+			"url": "/"
+		}
+	]
+}
