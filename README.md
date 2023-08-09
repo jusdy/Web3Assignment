@@ -1,10 +1,10 @@
 # Assignment for blockchain with Swagger Documentation - Node.js Project
 
 ![Node.js](https://img.shields.io/badge/Node.js-v14.17.4-green)
-![Web3.js](https://img.shields.io/badge/Web3.js-v1.5.2-blue)
+![Web3.js](https://img.shields.io/badge/ethers.js-v5.7.2-blue)
 ![Swagger](https://img.shields.io/badge/Swagger-v3.0-orange)
 
-Welcome to the **My Assignment** This Node.js application utilizes the Web3.js library to interact with Ethereum-based blockchains and provides an easy-to-use Swagger documentation interface for exploring the available APIs.
+Welcome to the **My Assignment** This Node.js application utilizes the ethers.js library to interact with Ethereum-based blockchains and provides an easy-to-use Swagger documentation interface for exploring the available APIs.
 
 ## Table of Contents
 
